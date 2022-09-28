@@ -23,13 +23,10 @@ class ProductPage extends Component{
         }
         else{
             let {product} = data
-           
+            console.log(product)
             return(
-                
-                
-                <Product product={product} />
-
-            
+                     
+                <Product product={product} />       
             
                 )
         }     

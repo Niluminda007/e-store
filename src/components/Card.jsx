@@ -45,21 +45,8 @@ class Card extends Component{
             } )
             let [item] = added_Item
             item["count"] = 1
-            
-
-            // let chosen_attr = {}
-            // item.attributes.map( attribute=>{
-            //     chosen_attr[attribute.id] = ""
-            // } )
-            
-            // item["chosen_attr"] = chosen_attr
-            
-            this.props.add_to_cart(item);
-            
-
+            this.props.add_to_cart(item); 
         }
-        
-
     }
    
 
@@ -68,16 +55,18 @@ class Card extends Component{
 
         return (
            
-            <div key={this.props.key} id={this.props.id} className="product-card" onClick={this.handleProduct} >
-           <Link key={this.props.id}  to={`/Products/${this.props.id}`} >
+            <div key={this.props.key} id={this.props.id} className={`product-card ${!this.props.inStock && "out-of-stock-card"}`} onClick={this.handleProduct} >
+           <Link key={this.props.id}  to={`${this.props.inStock&&`/Products/${this.props.id}`}`} >
             <div className="card-head">
-                <img alt="" src={this.props.src} className="product-img"></img>
-
+                <img alt="" src={this.props.src} className={`product-img ${!this.props.inStock && "out-of-stock-img"}`}></img>
+                
             </div>
-            </Link>
+            
+            </Link> 
+            {!this.props.inStock && <div className="out-of-stock-overlay"><p>OUT OF STOCK</p></div> }
             <div className="card-footer">
                 <div>
-                    <button className="common-cart-btn" id={`${this.props.id}-common-cart`} style={this.common_cart_url}  onClick={this.handleAdd}></button>
+                    <button className="common-cart-btn" id={`${this.props.id}-common-cart`}   style={this.props.inStock ?this.common_cart_url:{}}  onClick={this.props.inStock ?this.handleAdd:null}></button>
                     
                 </div>       
                 <p className="info">{this.props.item_name}</p>

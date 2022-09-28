@@ -83,7 +83,7 @@ class Product extends Component{
             <p className="item-name">{this.props.product.name}</p>
             {this.displayItemAttributes()}
 
-            <p className="item-price-head">PRICE: <br/><small className="item-price">{this.props.product.prices[0].currency.symbol}{this.props.product.prices[this.props.currency_id].amount}</small></p>
+            <p className="item-price-head">PRICE: <br/><small className="item-price">{this.props.product.prices[this.props.currency_id].currency.symbol}{this.props.product.prices[this.props.currency_id].amount}</small></p>
             <button className="item-add-btn" id={`${this.props.product.id}-product-add`} onClick={this.handleAdd}>ADD TO CART</button>
 
             <div className="item-descrip" dangerouslySetInnerHTML={{__html:this.props.product.description}}></div>

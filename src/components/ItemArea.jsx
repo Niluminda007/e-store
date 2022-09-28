@@ -14,18 +14,6 @@ class ItemArea extends Component{
 
     products = [];
 
-
-    handle_overlay = (e)=>{
-        const {id} = e.target
-        if(id==="overlay"){
-            this.props.handle_toggle()
-        }
-       
-    }
-
-
-    
-
     displayItems(){
 
         var data = this.props.data;
@@ -42,11 +30,12 @@ class ItemArea extends Component{
                 <div className="item-container">
                 <SetProducts products={data.categories[0].products} />
                 {data.categories[0].products.map( item =>{
+                    
 
                     if (category === "all"){
                         return (               
                                                     
-                            <Card key={item.id} product={item}  src={item.gallery[0]} item_name={item.name} price={item.prices[this.props.currency_id]} id={item.id}   /> 
+                            <Card key={item.id} product={item} inStock={item.inStock}  src={item.gallery[0]} item_name={item.name} price={item.prices[this.props.currency_id]} id={item.id}   /> 
                                                 
                     )
 
@@ -54,22 +43,14 @@ class ItemArea extends Component{
                     else if(category === item.category){
                         return (               
                                                      
-                            <Card key={item.id} product={item} src={item.gallery[0]} item_name={item.name} price={item.prices[this.props.currency_id]} id={item.id}   /> 
+                            <Card key={item.id} product={item} inStock={item.inStock} src={item.gallery[0]} item_name={item.name} price={item.prices[this.props.currency_id]} id={item.id}   /> 
                                                 
                     )
-
-                        
+     
                     }
-
-                    
-                    
-                } )
-                
-                
+                   
+                } )             
                 }
-
-                
-
                 </div>                                
             );
         }
@@ -85,19 +66,9 @@ class ItemArea extends Component{
         return (
             <div>
             {this.displayItems()}
-
-            {this.props.mini_cart_state && <div  onClick={this.handle_overlay}   id="overlay">
-             <MiniCart  />
-
-            </div>}
-            
-            
-           
-            </div>
-            
+            </div>        
         );
-    }
-    
+    } 
 }
 
 const mapStateToProps = (state)=>{

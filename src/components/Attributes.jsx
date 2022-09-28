@@ -18,6 +18,28 @@ class Attributes extends Component{
     
     item_sizes = []
 
+    display_selected_items(){
+
+        if(this.props.chosen_attrs.length != 0 ){ 
+    
+                this.props.chosen_attrs.forEach( attr => {
+                    let item = document.getElementById(attr)
+                    if (item != null){
+                        if(attr.includes("Color")){
+                            document.getElementById(attr).classList.add("cilcked_color_style")
+                        }
+                        else{
+                            document.getElementById(attr).classList.add("cilcked_normal_style")
+                        }
+                    }
+                    
+                });
+       }  
+            
+        }
+    
+
+
     handleClick=(e)=>{
         const {id,value} = e.target;
         
@@ -25,12 +47,9 @@ class Attributes extends Component{
             {
                 clicked_attribute_id:id,
                 clicked_attribute_ids:[...this.state.clicked_attribute_ids , id],
-                clicked_attribute_value :value,
-                
+                clicked_attribute_value :value, 
 
-            })
-        
-            // this.props.click(e,this.props.attr_list_id)
+            }) 
 
     }
     componentDidUpdate(){
@@ -53,15 +72,10 @@ class Attributes extends Component{
                     }
                     else{
                         document.getElementById(attr).classList.remove("cilcked_normal_style")
-                    }
-                    
-                    
-                    
-
+                    }             
                 }
 
             })
-
             
         }
 
@@ -70,45 +84,18 @@ class Attributes extends Component{
 
     componentWillUnmount(){
         if(this.state.clicked_attribute_id !== ""){
-
-            let updated_attrs = []
-            // this.props.chosen_attrs.forEach( attr =>{
-            //     if(attr.includes(this.props.attr_list.id)){
-                    
-            //         this.props.update_user_choice(attr)
-            //     }
-            // })
-
             this.props.store_user_choice(this.state.clicked_attribute_id)
         }
         
-
     }
 
     componentDidMount(){
-
- /*   if(this.props.chosen_attrs.length != 0 && this.props.item_name){ */
-
-            this.props.chosen_attrs.forEach( attr => {
-                let item = document.getElementById(attr)
-                if (item != null){
-                    if(attr.includes("Color")){
-                        document.getElementById(attr).classList.add("cilcked_color_style")
-
-                    }
-                    else{
-                        document.getElementById(attr).classList.add("cilcked_normal_style")
-                    }
-                }
-                
-            });
-   /*   }  */
-        
-
+        this.display_selected_items()
     }
 
     render(){
-        // console.log(this.state.clicked_attribute_id)
+       this.display_selected_items()
+       
         
         if(this.props.isCloth){
             this. item_sizes = clothSizes
@@ -149,7 +136,8 @@ class Attributes extends Component{
 
 const mapStateToProps = (state)=>{
     return {
-        chosen_attrs:state.store_attr
+        chosen_attrs:state.store_attr,
+        products:state.add_toCart
     }
 
 }

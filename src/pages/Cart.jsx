@@ -14,7 +14,6 @@ class Cart extends Component{
     constructor(props){
         super(props)
 
-
     }
 
     displayCartItems(){
@@ -35,18 +34,6 @@ class Cart extends Component{
         )        
     }
 
-    // createCartItem(item){
-        
-        
-        
-    //     return (
-            
-        
-    //         <CartCard key={item.id} id={item.id} images={item.gallery} item_name={item.name} category={item.category} price={item.prices[0]}  brand={item.brand} attributes={item.attributes} count={item.count} chosen_attr={item.chosen_attr}  />
-            
-    //         );
-
-    // }
     render(){
         
             return(

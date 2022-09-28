@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import {connect} from "react-redux";
-import {INCREASE_ITEM,ADD_PRODUCT,REMOVE_FROM_CART,UPDATE_CART} from "../Actions";
+import {INCREASE_ITEM,ADD_PRODUCT,REMOVE_FROM_CART,UPDATE_CART,DELETE_STORED_ATTRIBUTE} from "../Actions";
 
 
 class ItemCounter extends Component{
@@ -23,10 +23,19 @@ class ItemCounter extends Component{
         } )
         let {item_id} = this.props
 
-        let [item] = this.props.cart_products.items.filter( item =>{ return item.id == item_id})
+        let y = 0
+
+        let [item] = this.props.cart_products.items.filter( (item,index) =>{ 
+            if(item.id == item_id){
+                y = index
+            }
+
+            return item.id == item_id})
+
+            console.log(y)
         item.count = this.state.counter +1 
        
-        this.props.update_cart({["id"]:item_id,["product"]:item})
+        this.props.update_cart({["id"]:item_id,["product"]:item,["index"]:y})
     }
 
     handleDecrease = (e)=>{
@@ -37,6 +46,7 @@ class ItemCounter extends Component{
         
         if (this.state.counter < 2){
             this.props.remove_from_cart(item_id)
+            this.props.delete_user_choice(item.name)
             this.setState({counter:0})
 
         }
@@ -49,16 +59,7 @@ class ItemCounter extends Component{
             this.props.increase_item(-1)
             this.props.add_product(-this.props.price)
             
-    }
-            
-
-       
-        
-       
-        
-
-    
-
+    }    
     render(){
         return(
             <div className={this.props.isMiniCart?"mini-item-counter-container":"item-counter-container"} >
@@ -80,7 +81,8 @@ const mapDispatchToProps = ()=>{
         increase_item:INCREASE_ITEM,
         add_product:ADD_PRODUCT,
         remove_from_cart:REMOVE_FROM_CART,
-        update_cart:UPDATE_CART
+        update_cart:UPDATE_CART,
+        delete_user_choice:DELETE_STORED_ATTRIBUTE
 
     }
 }

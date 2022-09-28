@@ -9,9 +9,6 @@ export const REMOVE = ()=>{
         type: "REMOVE"
     }
 }
-
-
-
 export const ADD_TO_CART = (product)=>{
     return {
         type:"ADD_TO_CART",
@@ -108,3 +105,11 @@ export const UPDATE_STORED_ATTRIBUTE = (id)=>{
         payload:id
     }
 }
+
+export const DELETE_STORED_ATTRIBUTE = (id)=>{
+    return {
+        type:"DELETE_STORED_ATTRIBUTE",
+        payload:id
+    }
+}
+

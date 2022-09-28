@@ -13,7 +13,7 @@ const cartReducer = (state=initialState, action)=>{
             return {...state, items: [...state.items.filter(item => item.id !== action.payload)]};
 
         case "UPDATE_CART":
-            return {...state, items: [action.payload.product, ...state.items.filter(item => item.id !== action.payload.id)]}
+            return {...state, items: [...state.items.filter(item => item.id !== action.payload.id).splice(action.payload.index,0,action.payload.product), ...state.items]}
             
 
         default:

@@ -26,8 +26,7 @@ class App extends Component{
             <div className="container">
             <Header />
             <Switch>
-              {/* <Route path='/ItemArea'  /> */}
-              {/* <Route path={`/`} component={ItemArea} /> */}
+              <Route exact path={`/`} component={ItemArea} />
               <Route path={`/ItemArea/:id` } component={ItemArea}/>
               <Route path='/Cart' component={Cart} />
               <Route path={`/Products/:id`} component={ProductPage}/>

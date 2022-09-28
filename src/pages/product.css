@@ -50,13 +50,37 @@
 }
 
 .item-descrip{
+    
     width: 292px;
     position: relative;
+    height: 200px;
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.6rem;
     margin-top: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+   
+    
 }
+
+
+.item-descrip:hover{
+    overflow: unset;
+    text-overflow: unset;
+    
+
+}
+
+
+/* .item-descrip:hover p:hover{
+    display: flex;
+    overflow: unset;
+    
+    text-overflow: unset;
+
+} */
+
 
 .product-head{
     width: 727px;
